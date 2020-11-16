@@ -1,0 +1,158 @@
+@startuml
+
+title Office Simulator
+
+class Launcher {
+}
+
+class Simulation implements ITickable {
+    - floorNumber: int
+    - liftNumber: int
+    - liftCapacity: int
+    - maintenanceProbability: double
+    - p: double
+    - q: double
+    - employeeNumber: int
+    - developerNumber: int
+    - tickNumber: int
+    - seed: int
+    - office: Office
+    - peopleController: PeopleController
+    - liftController: LiftController
+    - userInterface: UserInterface
+    
+    + tick()
+    - variableSetup()
+    - run(tickNumber: int)
+}
+
+class PeopleController {
+    - people: ArrayList<Person>
+    - random: Random
+    
+    + initialSpawn(employeeNumber: int, developerNumber: int, floors: ArrayList<Floor>)
+    + spawn(maintenance: double, q: double, floorNumber: int)
+    + extract(): ArrayList<Person>
+    + gatherComplaints(floors: ArrayList<Floor>): int
+    + update(floors: ArrayList<Floor>, p: double): ArrayList<Floor>
+    + updateQueues(floors: ArrayList<Floor>): ArrayList<Floor>
+    - updateClientWaitTime(floors: ArrayList<Floor>): ArrayList<Floor> 
+    - clear(floors: ArrayList<Floor>): ArrayList<Floor>
+}
+
+class LiftController {
+    - office: Office
+    
+    + loadData(office: Office)
+    + extract(): Office
+    + liftsAction()
+    - liftMovement(lift: Lift): Lift
+    - loading(lift: Lift): Lift
+    - loadable(lift: Lift): boolean
+    - getRequests(lift: Lift): Request[]
+    - requestAbove(requests: Request[], lift: Lift): boolean
+    - requestUnder(requests: Request[], lift: Lift): boolean
+    - canFitNext(lift: Lift, up: boolean): boolean
+    - canEnter(lift: Lift, person: Person: boolean
+}
+
+class UserInterface {
+    - office: Office
+    
+    + loadData(office: Office)
+    + display()
+    + displayEach()
+    - personSymbol(p: Person): String
+}
+
+class Office {
+    + floors: ArrayList<Floor>
+    + lifts: ArrayList<Lift>
+    + complaints: int
+    
+    + addPeople(people: ArrayList<Person>)
+}
+
+class Request {
+    - destination: boolean
+    - up: boolean
+    - down: boolean
+    
+    + isAnyTrue(): boolean
+}
+
+class Floor {
+    - idle: ArrayList<Person>
+    - queueUp: LinkedList<Person>
+    - queueDown: LinkedList<Person>
+    - queueUpClient: LinkedList<Person>
+    - queueDownClient: LinkedList<Person>
+    - level: final int
+    
+    + addPeople(people: ArrayList<Person>) 
+}
+
+class Lift {
+    - population: ArrayList<Person> 
+    - capacity: int
+    - currentWeight: int
+    - currentFloor: int
+    - goingUp: boolean
+    - doorsOpen: boolean
+    - stuck: boolean
+    
+    + unloadPeople(): ArrayList<Person>
+    + loadPerson(person: Person): boolean
+    + moveUp()
+    + moveDown()
+    - updateCurrentWeight()
+}
+
+class Person {
+    - size: int
+    - destinationFloor: int
+    - currentFloor: int
+    - currentVisitDuration
+}
+
+class Employee extends Person {
+}
+
+class Developer extends Person {
+    - google: boolean
+}
+
+class Client extends Person {
+    - visitDuration: int
+    - MAX_WAIT_TIME: final static int
+    - waitTime: int
+    
+    + finished(): boolean
+    + complaint(): boolean
+}
+
+class Maintenance extends Person {
+    - visitDuration: int
+    
+    + finished(): boolean
+}
+
+interface ITickable {
++ tick()
+}
+
+Launcher *-down- Simulation
+
+Simulation *-right- UserInterface
+Simulation *-down- Office
+Simulation *-down- PeopleController
+Simulation *-down- LiftController
+Office "1  " *-down- "*" Floor
+Office "1" *-down- "*" Lift
+LiftController "1" *-down- "*" Request
+Floor "1" *-down- "*" Person
+Lift "1" *-down- "*" Person
+
+
+
+@enduml
