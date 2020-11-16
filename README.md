@@ -1,10 +1,20 @@
 # Elevator-Simulation
-Project used for simulating a working day of an office with an elevator system. Simulation takes into consideration maintenance and multiple lifts. Goal is to evaluate efficiency and predict potential bottlenecks.
+**Summary:**
+Project used for simulating a working day of an office with an elevator system. Simulation takes into consideration maintenance and multiple lifts. Goal is to evaluate efficiency and predict potential bottlenecks. Project was used to run a exemplary study on lift efficiency.
 
+**Content:**
+- Simulation implementaion
+- Simulation testing set
+- Documentation - UML, CRC cards, Demo, Lift Efficiency Study document
+
+**Implementation:**
 Image showing a console TUI being generated every tick. Allows for visually tracking traffic and displays addtional statistics like complaints and wait time.
 Population view focuses on different types of elevator users: customers, office workers (two different companies), maintenance etc.
 
 ![console view demo](https://github.com/Overkillus/Elevator-Simulation/blob/main/documentation/demo.png)
 
-Additionally, project is following a test-centered approach with JUnit testing.
-It's also featuring a complete set of UML diagrams which were crucial in the designing phase as well as CRC cards to ephasasize Object Oriented design.
+**Documentation:**
+All classes are documented and modelled using a UML class diagram standard:
+
+![UML](https://github.com/Overkillus/Elevator-Simulation/blob/main/documentation/UML/UML_office.png)
+
