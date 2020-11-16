@@ -1,0 +1,3 @@
+/*
+ * module officeSimulation { requires junit; }
+ */
