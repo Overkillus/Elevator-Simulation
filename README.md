@@ -4,7 +4,7 @@ Project used for simulating a working day of an office with an elevator system. 
 Image showing a console TUI being generated every tick. Allows for visually tracking traffic and displays addtional statistics like complaints and wait time.
 Population view focuses on different types of elevator users: customers, office workers (two different companies), maintenance etc.
 
-![console view demo](https://github.com/Overkillus/Elevator-Simulation/blob/main/images/demo.png)
+![console view demo](https://github.com/Overkillus/Elevator-Simulation/blob/main/documentation/demo.png)
 
 Additionally, project is following a test-centered approach with JUnit testing.
 It's also featuring a complete set of UML diagrams which were crucial in the designing phase as well as CRC cards to ephasasize Object Oriented design.
